@@ -33,7 +33,9 @@ Thoth is a **three-layer knowledge system** that gives AI assistants structured 
 npx thoth-init
 ```
 
-Auto-detects your project language (Go, TypeScript, Python, Rust, Java), scans architecture, counts source lines, and scaffolds `.thoth/` with a starter memory file.
+Auto-detects your project language (Go, TypeScript, Python, Rust, Java), scans architecture, counts source lines, scaffolds `.thoth/`, and **automatically injects Thoth into your AI coding tools** — Cursor, Windsurf, Claude Code, Gemini, and Copilot.
+
+No MCP server. No complex setup. Just a one-line rule that tells the AI: *"read `.thoth/memory.yaml` first."*
 
 Non-interactive mode for CI/scripts:
 ```bash
@@ -136,42 +138,30 @@ Benchmarked across 4 real production codebases (428,000+ lines):
 
 ---
 
-## AI Workflow Integration
+### Automatic (via `npx thoth-init`)
+`thoth-init` detects which tools you use and creates or updates the right rules file:
 
-### Claude Code / Antigravity
-Add to `.agent/workflows/session-start.md`:
-```markdown
-## Step 1: Read Thoth memory (ALWAYS)
-Read .thoth/memory.yaml first. This gives you full project context.
+| Tool | File | What happens |
+|:-----|:-----|:-------------|
+| **Cursor** | `.cursorrules` | Created or appended |
+| **Windsurf** | `.windsurfrules` | Created or appended |
+| **Claude Code** | `CLAUDE.md` + `.agent/workflows/session-start.md` | Created or appended |
+| **Gemini** | `.gemini/style.md` | Created or appended |
+| **Copilot** | `.github/copilot-instructions.md` | Created or appended |
 
-## Step 2: Read journal (when reasoning matters)
-Read .thoth/journal.md for decision history.
-```
+If the file already exists, Thoth appends its instruction. If it doesn't, Thoth creates it. If Thoth is already present, it skips. Idempotent and non-destructive.
 
-### Cursor / Windsurf
-Add to `.cursorrules` or `.windsurfrules`:
+### Manual
+For any AI tool that reads a rules or system prompt file, add this:
 ```
 At the start of every conversation, read .thoth/memory.yaml before reading any source files.
-This file contains the compressed project state and replaces reading thousands of lines of code.
+This file is the project's compressed state (~100 lines) and replaces reading thousands of lines of code.
+When reasoning matters, also read .thoth/journal.md for decision history.
+After making significant changes, update both files.
 ```
 
-### Gemini / .gemini rules
-Add to `.gemini/rules.md`:
-```
-ALWAYS read .thoth/memory.yaml at the start of every session.
-This is the project's persistent memory — architecture, decisions, limitations.
-```
-
-### MCP Integration (via Anubis)
-When running with [Sirsi Anubis](https://github.com/SirsiMaster/sirsi-anubis), Thoth is exposed as an MCP tool:
-```json
-{
-  "name": "thoth_read_memory",
-  "description": "Read the project's Thoth memory file for instant context"
-}
-```
-
-AI IDEs can call this tool at session start to automatically load project context.
+### Advanced: MCP Integration (via Anubis)
+When running with [Sirsi Anubis](https://github.com/SirsiMaster/sirsi-anubis), Thoth is also exposed as an MCP tool (`thoth_read_memory`). This is optional — the rules file approach above is simpler and works without any server.
 
 ---
 
