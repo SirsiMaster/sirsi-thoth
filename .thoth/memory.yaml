@@ -1,0 +1,27 @@
+# 𓁟 Thoth — Project Memory
+# Read this FIRST before any source files.
+# Last updated: 2026-03-22T17:23:38.631Z
+
+## Identity
+project: thoth-init
+language: TypeScript/JavaScript
+version: 1.0.0
+
+## Stats
+line_count: ~229
+
+## Architecture Quick Reference
+# templates/  — TODO: describe
+
+## Critical Design Decisions
+# TODO: Add your key technical choices and rationale
+
+## Known Limitations
+# TODO: What doesn't work, what's incomplete
+
+## Recent Changes
+# 2026-03-22: Thoth initialized
+
+## File Map
+# .thoth/memory.yaml  — THIS FILE
+# .thoth/journal.md   — engineering journal
