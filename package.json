@@ -1,45 +1,45 @@
 {
-  "name": "thoth-init",
-  "version": "1.0.0",
-  "description": "𓁟 Thoth — Persistent knowledge system for AI-assisted development. Gives AI coding assistants structured memory across sessions. 98% context reduction.",
-  "main": "index.js",
+  "name": "sirsi-thoth",
+  "version": "2.0.0",
+  "description": "𓁟 Thoth — Persistent knowledge system for AI-assisted development. Three-layer memory (YAML + journal + artifacts) gives AI coding assistants context across sessions. ~98% token reduction. Zero dependencies.",
+  "main": "lib/mcp-server.js",
   "bin": {
-    "thoth-init": "./index.js"
+    "thoth-init": "./index.js",
+    "thoth-sync": "./bin/thoth-sync.js",
+    "thoth-compact": "./bin/thoth-compact.js",
+    "thoth-mcp": "./bin/thoth-mcp.js"
   },
   "scripts": {
-    "test": "node index.js --help || true"
+    "test": "node -e \"require('./lib/detect'); require('./lib/sync'); require('./lib/compact'); require('./lib/mcp-server'); console.log('All modules load OK')\"",
+    "mcp": "node bin/thoth-mcp.js"
   },
   "keywords": [
-    "ai",
-    "llm",
-    "memory",
-    "context",
-    "claude",
-    "cursor",
-    "windsurf",
-    "copilot",
-    "codex",
-    "gemini",
-    "coding-assistant",
-    "developer-tools",
-    "knowledge-management",
-    "thoth",
-    "sirsi",
-    "persistent-memory",
-    "context-reduction",
-    "ai-coding"
+    "ai", "llm", "memory", "context", "mcp", "model-context-protocol",
+    "claude", "cursor", "windsurf", "copilot", "codex", "gemini",
+    "coding-assistant", "developer-tools", "knowledge-management",
+    "thoth", "sirsi", "persistent-memory", "context-reduction", "ai-coding",
+    "local-first", "zero-telemetry"
   ],
-  "author": "Sirsi Technologies",
+  "author": "Sirsi Technologies <engineering@sirsi.ai>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/SirsiMaster/sirsi-thoth"
   },
-  "homepage": "https://github.com/SirsiMaster/sirsi-thoth",
+  "homepage": "https://sirsi.ai/pantheon",
   "bugs": {
     "url": "https://github.com/SirsiMaster/sirsi-thoth/issues"
   },
   "engines": {
     "node": ">=16.0.0"
-  }
+  },
+  "files": [
+    "index.js",
+    "bin/",
+    "lib/",
+    "templates/",
+    "SPECIFICATION.md",
+    "LICENSE",
+    "README.md"
+  ]
 }
