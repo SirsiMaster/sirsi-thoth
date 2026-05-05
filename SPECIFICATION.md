@@ -128,11 +128,14 @@ AI IDEs (Claude Code, Cursor, Windsurf) can call this tool at conversation start
 - **As an AI skill**: Installed in Claude Code / Antigravity skill directories. Auto-detected.
 - **As a workflow**: `.agent/workflows/session-start.md` template included.
 
-### Planned distribution:
-- **VS Code extension**: `Thoth Memory` — sidebar panel showing memory + journal, auto-prompting AI to read on session start
+### Shipped:
 - **npm package**: `npx thoth-init` — scaffolds `.thoth/` in any project
-- **Claude Code MCP**: Standalone MCP server (no Anubis required) that serves Thoth memory
-- **Cursor / Windsurf plugin**: Rules file injection that instructs the AI to read `.thoth/memory.yaml`
+- **MCP server**: `thoth-mcp` — standalone JSON-RPC 2.0 server with 5 tools
+- **CLI tools**: `thoth-sync`, `thoth-compact` — memory management from terminal
+- **IDE injection**: Cursor, Windsurf, Claude Code, Gemini, Copilot (auto-injected on init)
+
+### Planned:
+- **VS Code extension**: `Thoth Memory` — sidebar panel showing memory + journal
 - **GitHub Action**: Auto-validates that Thoth memory is updated when source changes
 
 ### Independent of Anubis:

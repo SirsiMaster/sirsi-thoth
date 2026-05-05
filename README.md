@@ -3,7 +3,7 @@
 **Persistent Knowledge System for AI-Assisted Development**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-C8A951?style=flat)](LICENSE)
-[![npm](https://img.shields.io/badge/npm-thoth--init-CB3837?style=flat&logo=npm)](https://www.npmjs.com/package/thoth-init)
+[![npm](https://img.shields.io/badge/npm-sirsi--thoth-CB3837?style=flat&logo=npm)](https://www.npmjs.com/package/sirsi-thoth)
 [![Part of Sirsi Pantheon](https://img.shields.io/badge/Sirsi-Pantheon-1A1A5E?style=flat)](https://github.com/SirsiMaster)
 
 > *"Thoth invents writing so that knowledge survives the death of the scribe."*
@@ -160,22 +160,40 @@ When reasoning matters, also read .thoth/journal.md for decision history.
 After making significant changes, update both files.
 ```
 
-### Advanced: MCP Integration (via Anubis)
-When running with [Sirsi Anubis](https://github.com/SirsiMaster/sirsi-anubis), Thoth is also exposed as an MCP tool (`thoth_read_memory`). This is optional — the rules file approach above is simpler and works without any server.
+### Advanced: MCP Server
+
+Thoth ships its own MCP server with 5 tools. Start it with `thoth-mcp` and configure your IDE:
+
+```json
+{ "mcpServers": { "thoth": { "command": "thoth-mcp" } } }
+```
+
+**MCP Tools:** `thoth_read_memory`, `thoth_read_journal`, `thoth_sync`, `thoth_compact`, `thoth_status`
 
 ---
 
-## Part of the Sirsi Pantheon
+## Part of Sirsi Pantheon
 
-Thoth is an independent, standalone tool — but it's part of a family of Egyptian-themed developer tools by [Sirsi Technologies](https://github.com/SirsiMaster):
+Thoth is standalone — but it's part of [Sirsi Pantheon](https://sirsi.ai/pantheon), an infrastructure intelligence platform with 12 modules. Each module owns one domain.
 
-| Deity | Tool | Domain |
-|:------|:-----|:-------|
-| **𓁟 Thoth** | **sirsi-thoth** | AI persistent memory — *this repo* |
-| **𓂀 Anubis** | [sirsi-anubis](https://github.com/SirsiMaster/sirsi-anubis) | Infrastructure hygiene — weigh, judge, purify |
-| **☀️ Ra** | *coming via SirsiNexus* | Enterprise fleet hygiene + policy enforcement |
+| Deity | Domain |
+|:------|:-------|
+| **𓁟 Thoth** | System-level persistent memory — *this repo* |
+| **𓃣 Anubis** | Infrastructure hygiene, ghost detection, dedup |
+| **𓆄 Ma'at** | Quality gates, coverage, lint, canon |
+| **𓁐 Isis** | Health diagnostics, network safety, remediation |
+| **𓂀 Horus** | Code graph, workstation dashboard |
+| **𓇽 Seba** | Hardware profiling, topology, fleet discovery |
+| **𓁹 Osiris** | Checkpoints, risk assessment |
+| **𓁆 Seshat** | Knowledge grafting, cross-platform sync |
+| **𓁯 Net** | Scope weaving, ADR alignment |
+| **𓇶 Ra** | Fleet orchestration, enterprise policy |
+| **⚡ RTK** | Output filtering, token reduction |
+| **🏛️ Vault** | Context sandbox, FTS5 code search |
 
-Thoth works without Anubis. It's just files — YAML and Markdown. Any AI assistant that can read files can use Thoth. The Anubis MCP integration is a convenience layer, not a dependency.
+Install the full Pantheon: `brew tap SirsiMaster/tools && brew install sirsi-pantheon`
+
+Thoth works independently. It's just files — YAML and Markdown. Any AI assistant that can read files can use Thoth.
 
 ---
 
@@ -196,7 +214,7 @@ MIT License — free and open source. Use Thoth in any project, commercial or ot
 
 ## Origin
 
-Thoth was developed during the [Sirsi Anubis](https://github.com/SirsiMaster/sirsi-anubis) project (March 2026) when AI assistants were spending ~80% of their context window re-reading unchanged source files. The three-layer system cut session startup context by 98%+ across 4 production codebases totaling 428,000 lines of code.
+Thoth was developed during the [Sirsi Pantheon](https://github.com/SirsiMaster/sirsi-pantheon) project (March 2026) when AI assistants were spending ~80% of their context window re-reading unchanged source files. The three-layer system cut session startup context by 98%+ across 4 production codebases totaling 428,000 lines of code.
 
 Named after the Egyptian god of knowledge, writing, and wisdom — the keeper of all records and inventor of hieroglyphics.
 
